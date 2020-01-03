@@ -281,7 +281,8 @@ class elFinderVolumeLocalFileSystem extends elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function _basename($path) {
-		return basename($path);
+		return preg_replace('/^.+[\\\\\\/]/', '', $path);
+// 		return basename($path);
 	}
 
 	/**
