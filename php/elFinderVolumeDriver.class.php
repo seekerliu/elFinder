@@ -4926,6 +4926,11 @@ abstract class elFinderVolumeDriver {
 	 * @author Dmitry (dio) Levashov
 	 **/
 	protected function remove($path, $force = false) {
+		$p = realpath($path);
+		if ($p == $this->root || strlen($p) <= strlen($this->root)){
+		    return $this->setError(elFinder::ERROR_RM, $path, '根目录不能删除');
+		}
+		
 		$stat = $this->stat($path);
 
 		if (empty($stat)) {
